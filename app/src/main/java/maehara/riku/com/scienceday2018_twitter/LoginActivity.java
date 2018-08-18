@@ -3,6 +3,8 @@ package maehara.riku.com.scienceday2018_twitter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -25,12 +27,15 @@ public class LoginActivity extends AppCompatActivity {
             twitterLoginButton.setCallback(new Callback<TwitterSession>() {
                 @Override
                 public void success(Result<TwitterSession> result) {
-
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 @Override
                 public void failure(TwitterException exception) {
-
+                    Log.e("LoginActivity", exception.getMessage());
+                    Toast.makeText(LoginActivity.this, "ログインに失敗しました", Toast.LENGTH_LONG).show();
                 }
             });
         } else {
@@ -38,14 +43,11 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-//        TwitterAuthToken authToken = session.getAuthToken();
-//        String token = authToken.token;
-//        String secret = authToken.secret;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        twitterLoginButton.onActivityResult(requestCode, requestCode, data);
+        twitterLoginButton.onActivityResult(requestCode, resultCode, data);
     }
 }
