@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        /*
         button = findViewById(R.id.button);
         editText = findViewById(R.id.editText);
         handler = new Handler();
@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
                 doTweet(text);
             }
         });
+        */
+
+        /*
+         *  ここから下に書く
+         */
     }
 
     private void doTweet(String text) {
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                             public void success(Result<Tweet> result) {
                                 handler.post(new Runnable() {
                                     public void run() {
-                                        Toast.makeText(MainActivity.this, "ツイートしました。", Toast.LENGTH_SHORT).show();
+                                        showToast("ツイートしました。");
                                     }
                                 });
                             }
@@ -66,10 +71,14 @@ public class MainActivity extends AppCompatActivity {
                             public void failure(TwitterException exception) {
                                 handler.post(new Runnable() {
                                     public void run() {
-                                        Toast.makeText(MainActivity.this, "ツイートに失敗しました。", Toast.LENGTH_SHORT).show();
+                                        showToast("ツイートに失敗しました");
                                     }
                                 });
                             }
                         });
+    }
+
+    private void showToast(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 }
