@@ -1,5 +1,6 @@
 package maehara.riku.com.scienceday2018_twitter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.twitter.sdk.android.core.services.StatusesService;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final Boolean IS_TUTORIAL = true;
     private static final String HASH_TAG = " #OneDayScience2018 #rhLab";
 
     private Button button;
@@ -29,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (!IS_TUTORIAL && TwitterCore.getInstance().getSessionManager().getActiveSession() == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         button = findViewById(R.id.button);
         editText = findViewById(R.id.editText);
         handler = new Handler();
