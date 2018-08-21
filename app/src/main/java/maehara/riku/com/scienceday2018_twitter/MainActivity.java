@@ -35,22 +35,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        /*
-        button = findViewById(R.id.button);
-        editText = findViewById(R.id.editText);
-        handler = new Handler();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = editText.getText().toString();
-                doTweet(text);
-            }
-        });
-        */
 
-        /*
-         *  ここから下に書く
-         */
+        // ここに書く
+
+
+
     }
 
     private void doTweet(String text) {
